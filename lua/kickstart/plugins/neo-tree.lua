@@ -18,6 +18,9 @@ return {
       width = 30,
     },
     filesystem = {
+      filtered_items = {
+        visible = true,
+      },
       window = {
         mappings = {
           ['\\'] = 'close_window',
