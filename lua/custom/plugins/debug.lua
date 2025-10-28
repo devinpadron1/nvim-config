@@ -91,6 +91,8 @@ return {
 
     -- Keybindings
     vim.keymap.set('n', '<F5>', dap.continue, { desc = 'Debug: Start/Continue' })
+    vim.keymap.set('n', '<S-F5>', dap.terminate, { desc = 'Debug: Stop' })
+    vim.keymap.set('n', '<C-S-F5>', dap.restart, { desc = 'Debug: Restart' })
     vim.keymap.set('n', '<F9>', dap.toggle_breakpoint, { desc = 'Debug: Toggle Breakpoint' })
     vim.keymap.set('n', '<F10>', dap.step_over, { desc = 'Debug: Step Over' })
     vim.keymap.set('n', '<F11>', dap.step_into, { desc = 'Debug: Step Into' })
