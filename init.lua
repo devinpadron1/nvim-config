@@ -168,6 +168,19 @@ require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
   'NMAC427/guess-indent.nvim', -- Detect tabstop and shiftwidth automatically
 
+  -- Session management - auto-save and restore buffers/windows
+  {
+    'rmagatti/auto-session',
+    lazy = false,
+    config = function()
+      require('auto-session').setup({
+        auto_restore_enabled = true,
+        auto_save_enabled = true,
+        suppressed_dirs = { '/', '/tmp', '/var/tmp' },
+      })
+    end,
+  },
+
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
