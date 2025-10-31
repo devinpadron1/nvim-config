@@ -74,8 +74,6 @@ return {
       },
     }
 
-    dap.configurations.qml = dap.configurations.cpp
-
     -- Auto-open UI when debugging starts (with error handling)
     dap.listeners.after.event_initialized['dapui_config'] = function()
       vim.schedule(function()
