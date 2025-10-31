@@ -31,6 +31,8 @@ end)
 -- Enable break indent
 vim.o.breakindent = true
 
+vim.o.linebreak = true
+
 -- Save undo history
 vim.o.undofile = true
 
@@ -173,11 +175,11 @@ require('lazy').setup({
     'rmagatti/auto-session',
     lazy = false,
     config = function()
-      require('auto-session').setup({
+      require('auto-session').setup {
         auto_restore_enabled = true,
         auto_save_enabled = true,
         suppressed_dirs = { '/', '/tmp', '/var/tmp' },
-      })
+      }
     end,
   },
 
@@ -831,6 +833,14 @@ require('lazy').setup({
     'EdenEast/nightfox.nvim',
     priority = 1000,
     config = function()
+      require('nightfox').setup({
+        palettes = {
+          carbonfox = {
+            bg0 = '#000000',  -- Pure black background
+            bg1 = '#0a0a0a',  -- Near black secondary background
+          }
+        }
+      })
       vim.cmd.colorscheme 'carbonfox'
     end,
   },
