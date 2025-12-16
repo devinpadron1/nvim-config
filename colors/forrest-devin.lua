@@ -29,7 +29,7 @@ end
 hl('Normal', { fg = c.fg, bg = c.bg })
 hl('CursorLine', { bg = c.bg })
 hl('CursorLineNr', { fg = c.orange, bold = true })
-hl('LineNr', { fg = c.gray })
+hl('LineNr', { fg = '#3a3a3a' })
 hl('Visual', { bg = c.green_dark })
 hl('Search', { fg = '#000000', bg = c.yellow })
 hl('IncSearch', { fg = '#000000', bg = c.yellow })
