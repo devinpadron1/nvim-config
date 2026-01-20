@@ -8,7 +8,6 @@ vim.o.undofile = true
 vim.o.ignorecase = true
 vim.o.smartcase = true
 vim.o.signcolumn = 'yes'
-vim.o.statuscolumn = '%s%l   '
 vim.o.updatetime = 250
 vim.o.splitright = true
 vim.o.splitbelow = true
@@ -18,6 +17,7 @@ vim.o.showmode = false
 vim.o.cmdheight = 0
 vim.o.laststatus = 3
 vim.o.statusline = ' -- %{toupper(mode())} -- %= %f '
+vim.o.statuscolumn = '%s%l   '
 vim.o.tabstop = 4
 vim.o.shiftwidth = 4
 vim.o.expandtab = true
@@ -62,7 +62,34 @@ require('lazy').setup({
       })
     end,
   },
-  { 'EdenEast/nightfox.nvim' },
+  {
+    'EdenEast/nightfox.nvim',
+    config = function()
+      require('nightfox').setup({
+        options = {
+          transparent = true,
+        }
+      })
+    end,
+  },
 })
 
-vim.cmd.colorscheme('forrest-devin')
+-- LSP
+vim.lsp.config('pyright', {
+  cmd = { 'pyright-langserver', '--stdio' },
+  filetypes = { 'python' },
+  root_dir = function(bufnr, on_dir)
+    local root = vim.fs.root(bufnr, { 'pyproject.toml', 'setup.py', 'requirements.txt', '.git' })
+    if root then on_dir(root) end
+  end,
+})
+vim.lsp.enable('pyright')
+
+vim.api.nvim_create_autocmd('LspAttach', {
+  callback = function(event)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, { buffer = event.buf, desc = 'Go to definition' })
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, { buffer = event.buf, desc = 'Go to references' })
+  end,
+})
+
+vim.cmd.colorscheme('nightfox')
